@@ -14,15 +14,20 @@ Then('I should see a {string} message', async (message) => {
     await expect(alertText).toContain(message);
 });
 
-Then(`the page should load within {float} seconds`, async (loadTime) => {
+Then(`the page should load within {int} milliseconds`, async (loadTime) => {
     await browser.url(`/${sharedData.currentPage}`);
     const performance = await browser.getMetrics();
     await expect(performance.speedIndex).toBeLessThanOrEqual(loadTime);
 });
 
-Then(`the page should meet {any} level standards`, async (standard: string) => {
+Then(`the page should meet {string} level standards`, async (standard: string) => {
     const builder = new AxeBuilder({ client: browser }).withTags([standard]);
     const results = await builder.analyze();
     expect(results.violations).toHaveLength(0);
 });
 
+Then(`I should see the {string} button`, (buttontext: string) => {
+    const button = $(`button=${buttontext}`);
+    expect(button).toBeExisting();
+    expect(button).toBeClickable();
+});

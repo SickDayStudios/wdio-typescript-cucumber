@@ -6,11 +6,11 @@ Feature: Performance Testing
       Given I initialize the lighthouse service
 
 Scenario:
-    Given I navigate to the <page> page
-    Then the page should load within <load_time> seconds
+    When I navigate to the "<page>" page
+    Then the page should load within <load_time> milliseconds
 
     Examples:
-      | page      | load_time |
-      | login     | 1.5       |
-      | about     | 1.8       |
-      | contact   | 2.1       |
+      | page      | load_time  |
+      | login     | 1500       |
+      | about     | 1800       |
+      | contact   | 2100       |
